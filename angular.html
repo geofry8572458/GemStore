@@ -62,48 +62,13 @@
 
 						<!--Image Gallery -->
 						<div class="gallery" ng-show="product.images.length > 0" ng-controller="GalleryController as gallery">
-							<!--
-						<div class="img-wrap">
-							<img ng-src="{{product.images[gallery.current]}}" />
-						</div>
-						-->
 							<ul class="img-thumbnails clearfix">
 								<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
 									<img ng-src="{{image}}" />
 								</li>
 							</ul>
 						</div>
-						<section class="tab" ng-controller="TabController as tabCtrl">
-							<ul class="nav nav-pills">
-								<li ng-class="{active: tabCtrl.isSet(1)">
-									<a ng-click="tabCtrl.setTab(1)" href>Description</a>
-								</li>
-								<li ng-class="{active: tabCtrl.isSet(2)">
-									<a ng-click="tabCtrl.setTab(2)" href>Specifications</a>
-								</li>
-								<li ng-class="{active: tabCtrl.isSet(3)">
-									<a ng-click="tabCtrl.setTab(3)" href>Review</a>
-								</li>
-							</ul>
-							<div ng-show="tabCtrl.isSet(1)">
-								<h4>Description</h4>
-								<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore accusantium dolorem architecto ipsa sed cumque esse animi doloremque fugiat illo tenetur ea tempora error quis, ipsum, dolore sequi culpa eaque!</blockquote>
-							</div>
-							<div ng-show="tabCtrl.isSet(2)">
-								<h4>Specifications</h4>
-								<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore accusantium dolorem architecto ipsa sed cumque esse animi doloremque fugiat illo tenetur ea tempora error quis, ipsum, dolore sequi culpa eaque!</blockquote>
-							</div>
-							<div ng-show="tabCtrl.isSet(3)">
-								<h4>Reviews</h4>
-								<li ng-repeat="review in product.reviews">
-									<blockquote>
-										<strong>{{review.stars}} Stars</strong>
-										{{review.body}}
-										<cite class="clearfix">{{review.author}}</cite>	
-									</blockquote>
-								</li>
-							</div>
-						</section>
+						<product-tabs></product-tabs>
 					</div>
 				</div>
 				<div class="col-md-3 col-md-offset-1">
@@ -124,7 +89,6 @@
 	<footer>
 		<div class="footer-bottom">
 			<div class="container">
-				<p class="pull-center">Copyright © Footer E-commerce Plugin 2014. All right reserved.</p>
 				<div class="pull-left center-block">
 					<a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-3x"></i></a>
 					<a href="https://twitter.com/bootsnipp"><i id="social" class="fa fa-twitter-square fa-3x"></i></a>

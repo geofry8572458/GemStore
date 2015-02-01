@@ -4,3 +4,10 @@
 footer {
 	background-color: #8d8d9b;
 }
+
+.ng-invalid.ng-dirty {
+  border-color:red
+}
+.ng-valid.ng-dirty {
+  border-color: green
+}
