@@ -10,6 +10,7 @@
 	<!-- From CDN -->
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/angular.css">
 
 	<!--Requirements, pulled locally -->
@@ -17,7 +18,7 @@
 </head>
 
 
-<body ng-controller="StoreController as store">
+<body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -27,7 +28,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Angular 101</a>
+				<a class="navbar-brand" href="#">Geoffs Angular Learning</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<form class="navbar-form navbar-right">
@@ -44,16 +45,109 @@
 		</div>
 	</nav>
 
-	<div class="body">
+	<div class="body" ng-controller="StoreController as store">
 		<div class="container">
-			<h1>Yes I am here</h1>
-			<h3>{{store.product.name}}
-			<em class="pull-right">{{store.product.price}}</em>
-			</h3>
-		</div>
+			<div class="jumbotron">
+				<h1 class="text-center">Gem Store</h1>
+			</div>
+			<div class="row">
+				<div class="col-md-8">
 
+					<!-- Product Container -->
+					<div class="product" ng-repeat="product in store.products">
+						<h3>{{product.name}}
+							<em class="pull-right">{{product.price | currency}}</em>
+						</h3>
+						<button class="btn btn-primary" ng-show="product.canPurchase">Buy This Item</button>
+
+						<!--Image Gallery -->
+						<div class="gallery" ng-show="product.images.length > 0" ng-controller="GalleryController as gallery">
+							<!--
+						<div class="img-wrap">
+							<img ng-src="{{product.images[gallery.current]}}" />
+						</div>
+						-->
+							<ul class="img-thumbnails clearfix">
+								<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+									<img ng-src="{{image}}" />
+								</li>
+							</ul>
+						</div>
+						<section class="tab" ng-controller="TabController as tabCtrl">
+							<ul class="nav nav-pills">
+								<li ng-class="{active: tabCtrl.isSet(1)">
+									<a ng-click="tabCtrl.setTab(1)" href>Description</a>
+								</li>
+								<li ng-class="{active: tabCtrl.isSet(2)">
+									<a ng-click="tabCtrl.setTab(2)" href>Specifications</a>
+								</li>
+								<li ng-class="{active: tabCtrl.isSet(3)">
+									<a ng-click="tabCtrl.setTab(3)" href>Review</a>
+								</li>
+							</ul>
+							<div ng-show="tabCtrl.isSet(1)">
+								<h4>Description</h4>
+								<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore accusantium dolorem architecto ipsa sed cumque esse animi doloremque fugiat illo tenetur ea tempora error quis, ipsum, dolore sequi culpa eaque!</blockquote>
+							</div>
+							<div ng-show="tabCtrl.isSet(2)">
+								<h4>Specifications</h4>
+								<blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore accusantium dolorem architecto ipsa sed cumque esse animi doloremque fugiat illo tenetur ea tempora error quis, ipsum, dolore sequi culpa eaque!</blockquote>
+							</div>
+							<div ng-show="tabCtrl.isSet(3)">
+								<h4>Reviews</h4>
+								<li ng-repeat="review in product.reviews">
+									<blockquote>
+										<strong>{{review.stars}} Stars</strong>
+										{{review.body}}
+										<cite class="clearfix">{{review.author}}</cite>	
+									</blockquote>
+								</li>
+							</div>
+						</section>
+					</div>
+				</div>
+				<div class="col-md-3 col-md-offset-1">
+					<ul class="list-group list-unstyled">
+						<li class="list-group-item" ng-repeat="product in store.products">
+							<h3>
+								{{product.name | limitTo:5}}
+								<em class="pull-right">{{product.price | currency}}</em>
+							</h3>
+						</li>
+					</ul>
+					<img style="width: 100%" src="http://lorempixel.com/300/200" />
+				</div>
+			</div>
+		</div>
 	</div>
-	
+
+	<footer>
+		<div class="footer-bottom">
+			<div class="container">
+				<p class="pull-center">Copyright © Footer E-commerce Plugin 2014. All right reserved.</p>
+				<div class="pull-left center-block">
+					<a href="https://www.facebook.com/bootsnipp"><i id="social" class="fa fa-facebook-square fa-3x"></i></a>
+					<a href="https://twitter.com/bootsnipp"><i id="social" class="fa fa-twitter-square fa-3x"></i></a>
+					<a href="https://plus.google.com/+Bootsnipp-page"><i id="social" class="fa fa-google-plus-square fa-3x"></i></a>
+					<a href="mailto:bootsnipp@gmail.com"><i id="social" class="fa fa-envelope-square fa-3x"></i></a>
+				</div>
+				<div class="pull-right">
+					<ul class="nav nav-pills payments">
+						<li><i class="fa fa-cc-visa"></i>
+						</li>
+						<li><i class="fa fa-cc-mastercard"></i>
+						</li>
+						<li><i class="fa fa-cc-amex"></i>
+						</li>
+						<li><i class="fa fa-cc-paypal"></i>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--/.footer-bottom-->
+	</footer>
+
 
 	<!--Requirements, uncomment below to pull locally -->
 
