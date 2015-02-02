@@ -1,0 +1,8 @@
+<!--Image Gallery -->
+<div class="gallery" ng-show="product.images.length > 0">
+	<ul class="img-thumbnails clearfix">
+		<li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+			<img ng-src="{{image}}" />
+		</li>
+	</ul>
+</div>
